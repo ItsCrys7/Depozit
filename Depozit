@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Depozit {
+    private Map<String, Produs> inventar;
+
+    public Depozit() {
+        inventar = new HashMap<>();
+    }
+
+    public void adaugaProdus(Produs produs) {
+        if (inventar.containsKey(produs.cod)) {
+            Produs existent = inventar.get(produs.cod);
+            existent.cantitate += produs.cantitate;
+        } else {
+            inventar.put(produs.cod, produs);
+        }
+    }
+
+    public void tiparesteInventar() {
+        for (Produs produs : inventar.values()) {
+            System.out.println("Cod: " + produs.cod + ", Nume: " + produs.nume + 
+                               ", Pret: " + produs.calculeazaPret() + 
+                               ", Cantitate: " + produs.cantitate);
+        }
+    }
+}
